@@ -1,23 +1,168 @@
 :REVEAL_PROPERTIES:
-#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
-#+REVEAL_REVEAL_JS_VERSION: 4
 #+OPTIONS: timestamp:nil toc:1 num:nil
+#+REVEAL_VERSION: 4
+#+REVEAL_INIT_OPTIONS: center:false, transition:'slide', hash: true, navigationMode: 'linear',
+#+REVEAL_INIT_OPTIONS: margin:0.1, width:1024, height:768
+#+REVEAL_THEME: black
+#+REVEAL_TITLE_SLIDE: <h2>%t</h2><br><h3>%a</h3>«Базальт СПО»
 :END:
 
-#+TITLE: TEST TITLE
-#+AUTHOR: Egor Ignatov
+#+TITLE: Коммуникация сборочницы со сторонними сервисами через брокер сообщений RabbitMQ
+#+AUTHOR: Егор Игнатов
 
-* Slide 1
-[[https://git.altlinux.org/icons/alt.png]]
+* Доклад
+#+ATTR_HTML: :width 55% :align center
+[[./qr.svg]]
 
-* Slide 2
-- foo
-- bar
-- baz
+https://blarse.github.io/girar-amqp/
+
+* Overview
+#+ATTR_REVEAL: :frag (appear)
+- Сборочница (girar)
+- Advanced Message Queuing Protocol
+  #+ATTR_REVEAL: :frag appear
+  + организация очередей
+  + маршрутизация сообщений
+  + надежность
+  + безопасность
+
+* Сборочница
+bla bla bla
+События
+** Изменение в *задании*
+#+ATTR_REVEAL: :frag (appear)
+- *state*: смена состояния таска
+- *delete*: удаление таска
+- *deps*: изменение в списке зависимостей
+- *share*: изменение доступа к заданию
+- *abort*: отмена сборки
+- *progress*
+
+** События на изменения в сабтаске
+#+ATTR_REVEAL: :frag (appear)
+- *create*
+- *delete*
+- *approve/disapprove*
+- *progress*
+
+** Событие *progress*
+#+ATTR_REVEAL: :frag (appear)
+- Поэтапная загрузка таска в базу
+- Анализ процесса сборки
+
+
+** todo
+
+
+#+ATTR_REVEAL: :frag (appear)
 - 
-- 
+- Изменение в *подзадании*
+- Изменение в *ACL*
+ 
+** Действия на изменения в таске
 
-* Slide 3
-1. https://rdb.altlinux.org/api/
-2. https://packages.altlinux.org/
+
+
+** Этапы сборки (gb/gb-build-task-stages)
+#+BEGIN_SRC bash
+  # prepare changes
+  gb-task-gen-buildrepo
+  gb-task-setup-remote
+  gb-task-copy-packages
+  gb-task-build-prep
+  gb-task-build
+  fail_if_task_abort_requested
+  gb-x-girar task-make-index-html "$id" ||:
+
+  gb-x-girar hook-event task update "$id" ||:
+  for i in $(src_nums); do
+      gb-x-girar hook-event subtask update "$id" "$i" ||:
+  done
+
+  # run basic tests
+  gb-task-check-build
+  gb-task-check-noarch
+  gb-task-repo-plan
+
+  # gather information about closed bugs and fixed vulns
+  gb-task-gen-changelog
+  gb-task-find-closed-bugs
+  gb-task-find-fixed-vulns
+
+  # generate task and "next" repos
+  gb-task-gen-task-repo "$id"
+  gb-task-gen-next-repo
+
+  # run expensive tests
+  gb-task-repo-check-provides
+  gb-task-repo-unmets
+  gb-task-repo-elfsym
+  gb-task-check-install
+
+  # build and test arepo packages
+  gb-task-arepo
+
+  # run surmountable tests
+  gb-task-check-girar
+  gb-task-check-lastchange
+  gb-task-check-neighbour-version
+  gb-task-check-acl
+
+  # apply local policy enforcement
+  gb-task-local-policy
+
+  # save generated "next" repo for commit
+  gb-task-gen-ci
+  gb-task-gen-hash
+  gb-task-save-repo
+#+END_SRC
+
+** События на изменения в ACL
+#+ATTR_REVEAL: :frag appear
+- add
+- del
+- leader
+- replace
+- create
+- delete
+
+ 
+* RabbitMQ
+#+ATTR_REVEAL: :frag (appear)
+blabla
+why RabbitMQ?
+
+** High Availability
+** Security
+** Routing
+
+
+** routing: routing key(sostav)
+
+* Сервисы
+** repodb
+#+ATTR_REVEAL: :frag (appear)
+- altrepodb
+- altrepo-api и [[https://rdb.altlinux.org/api/]]
+- packages.altlinux.org
+- Сервис загрузки тасков
+  
+** bugzilla
+** QA automation
+** Future
+
+
+* The End
+** links:
+[[https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol][Wikipedia: AMQP]]
+
+[[https://en.wikipedia.org/wiki/RabbitMQ][Wikipedia: RabbitMQ]]
+
+[[https://www.rabbitmq.com/documentation.html][RabbitMQ Docs]]
+
+** sources:
+[[https://git.altlinux.org/people/glebfm/packages/girar.git][girar]]
+
+
+[[https://git.altlinux.org/people/dshein/public/?p=altrepodb.git][altrepodb]]
 
