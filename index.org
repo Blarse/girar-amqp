@@ -50,7 +50,7 @@ https://blarse.github.io/girar-amqp/
 
 ** Событие *'progress'*
 #+ATTR_REVEAL: :frag (appear)
-- Поэтапная загрузка таска в базу
+- Поэтапная загрузка таска в базу данных
 - Анализ процесса сборки
 #+ATTR_REVEAL: :frag (appear)
 Этапы сборки (gb/gb-build-task-stages)
@@ -124,7 +124,7 @@ https://blarse.github.io/girar-amqp/
   #+ATTR_REVEAL: :frag (appear)
   + Кластер из трех узлов
   + Keepalived
-  + Quorum queues
+  + Очереди типа quorum
 - Security
   #+ATTR_REVEAL: :frag (appear)
   + Все подключения осуществляются через TLS
@@ -155,8 +155,8 @@ https://blarse.github.io/girar-amqp/
 - Загрузка багов из багзиллы
   #+ATTR_REVEAL: :frag (appear)
   + Bugzilla Push Extension
-  + Сервис загрузки багов
-- Использование в тестировании
+  + TODO: Сервис загрузки багов
+- Использование в тестировании сборочных заданий
 
 * sources:
 
