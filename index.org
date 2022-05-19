@@ -2,9 +2,10 @@
 #+OPTIONS: timestamp:nil toc:1 num:nil
 #+REVEAL_VERSION: 4
 #+REVEAL_INIT_OPTIONS: center:false, transition:'slide', hash: true, navigationMode: 'linear',
-#+REVEAL_INIT_OPTIONS: margin:0.1, width:1024, height:768
+#+REVEAL_INIT_OPTIONS: margin:0.15, width:1024, height:768
 #+REVEAL_THEME: black
 #+REVEAL_TITLE_SLIDE: <h2>%t</h2><br><h3>%a</h3>«Базальт СПО»
+#+REVEAL_EXTRA_CSS: ./local.css
 :END:
 
 #+TITLE: Коммуникация сборочницы со сторонними сервисами через брокер сообщений RabbitMQ
@@ -16,7 +17,7 @@
 
 https://blarse.github.io/girar-amqp/
 
-* Overview
+* Вступление
 #+ATTR_REVEAL: :frag (appear)
 - Сборочница (girar)
 - Advanced Message Queuing Protocol
@@ -26,9 +27,11 @@ https://blarse.github.io/girar-amqp/
   + надежность
   + безопасность
 
-* Сборочница
-bla bla bla
-События
+* AMQP в Сборочнице
+#+ATTR_REVEAL: :frag (appear)
+- *amqp-publish* из пакета rabbitmq-c
+- Сообщения отправляются по событию
+
 ** Изменение в *задании*
 #+ATTR_REVEAL: :frag (appear)
 - *state*: смена состояния таска
@@ -38,32 +41,20 @@ bla bla bla
 - *abort*: отмена сборки
 - *progress*
 
-** События на изменения в сабтаске
+** Изменения в *подзадании*
 #+ATTR_REVEAL: :frag (appear)
 - *create*
 - *delete*
 - *approve/disapprove*
 - *progress*
 
-** Событие *progress*
+** Событие *'progress'*
 #+ATTR_REVEAL: :frag (appear)
 - Поэтапная загрузка таска в базу
 - Анализ процесса сборки
-
-
-** todo
-
-
 #+ATTR_REVEAL: :frag (appear)
-- 
-- Изменение в *подзадании*
-- Изменение в *ACL*
- 
-** Действия на изменения в таске
-
-
-
-** Этапы сборки (gb/gb-build-task-stages)
+Этапы сборки (gb/gb-build-task-stages)
+#+ATTR_REVEAL: :frag (appear)
 #+BEGIN_SRC bash
   # prepare changes
   gb-task-gen-buildrepo
@@ -117,8 +108,8 @@ bla bla bla
   gb-task-save-repo
 #+END_SRC
 
-** События на изменения в ACL
-#+ATTR_REVEAL: :frag appear
+** Изменения в ACL
+#+ATTR_REVEAL: :frag appear 
 - add
 - del
 - leader
@@ -129,40 +120,57 @@ bla bla bla
  
 * RabbitMQ
 #+ATTR_REVEAL: :frag (appear)
-blabla
-why RabbitMQ?
-
-** High Availability
-** Security
-** Routing
-
-
-** routing: routing key(sostav)
+- High Availability
+  #+ATTR_REVEAL: :frag (appear)
+  + Кластер из трех узлов
+  + Keepalived
+  + Quorum queues
+- Security
+  #+ATTR_REVEAL: :frag (appear)
+  + Все подключения осуществляются через TLS
+  + Разграничен доступ к ресурсам между пользователями
+  + Свой сервер авторизации и аутентификации
+    #+ATTR_REVEAL: :frag (appear)
+    * Авторизация по Source IP
 
 * Сервисы
-** repodb
+* repodb
+
 #+ATTR_REVEAL: :frag (appear)
 - altrepodb
-- altrepo-api и [[https://rdb.altlinux.org/api/]]
+  #+ATTR_REVEAL: :frag (appear)
+  + sql/0000_ initial.sql
+- altrepo-api
+  #+ATTR_REVEAL: :frag (appear)
+  + https://rdb.altlinux.org/api/
 - packages.altlinux.org
+
+* Сервисы
+#+ATTR_REVEAL: :frag (appear)
 - Сервис загрузки тасков
-  
-** bugzilla
-** QA automation
-** Future
+  #+ATTR_REVEAL: :frag (appear)
+  + Поддержание актуальности базы
+  + Обработка случаев сложных для altrepodb
+  + реализован на python с помощью библиотеки pika
+- Загрузка багов из багзиллы
+  #+ATTR_REVEAL: :frag (appear)
+  + Bugzilla Push Extension
+  + Сервис загрузки багов
+- Использование в тестировании
 
+* sources:
 
-* The End
-** links:
-[[https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol][Wikipedia: AMQP]]
+- [[https://git.altlinux.org/people/egori/public/?p=uploaderd.git][uploaderd]]
+- [[https://git.altlinux.org/people/glebfm/packages/girar.git][girar]]
+- [[https://git.altlinux.org/people/dshein/public/altrepodb.git][altrepodb]]
+- [[https://git.altlinux.org/gears/a/altrepo-api.git?p=altrepo-api.git][altrepo-api]]
+- [[https://git.altlinux.org/people/egori/public/?p=bugzilla-push.git][bugzilla-push]]
+- [[https://github.com/pika/pika][pika]]
+- [[https://github.com/alanxz/rabbitmq-c][rabbitmq-c]]
 
-[[https://en.wikipedia.org/wiki/RabbitMQ][Wikipedia: RabbitMQ]]
+* Вопросы
+#+ATTR_HTML: :width 55% :align center
+[[./qr.svg]]
 
-[[https://www.rabbitmq.com/documentation.html][RabbitMQ Docs]]
-
-** sources:
-[[https://git.altlinux.org/people/glebfm/packages/girar.git][girar]]
-
-
-[[https://git.altlinux.org/people/dshein/public/?p=altrepodb.git][altrepodb]]
+https://blarse.github.io/girar-amqp/
 

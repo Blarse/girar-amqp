@@ -1,0 +1,7 @@
+.reveal ul {
+    display: block;
+}
+
+#sec-table-of-contents #table-of-contents {
+    display: none
+}

@@ -13,6 +13,7 @@
 
 <link rel="stylesheet" href="./reveal.js/dist/theme/black.css" id="theme"/>
 
+<link rel="stylesheet" href="./local.css"/>
 </head>
 <body>
 <div class="reveal">
@@ -23,12 +24,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org7b53409">Доклад</a></li>
-<li><a href="#/slide-org1505bf4">Overview</a></li>
-<li><a href="#/slide-org5066b09">Сборочница</a></li>
-<li><a href="#/slide-orged9824e">RabbitMQ</a></li>
-<li><a href="#/slide-orgdd265b5">Сервисы</a></li>
-<li><a href="#/slide-orgb448c2f">The End</a></li>
+<li><a href="#/slide-org2c0eb7c">Доклад</a></li>
+<li><a href="#/slide-org4f020a7">Вступление</a></li>
+<li><a href="#/slide-org4edc17c">AMQP в Сборочнице</a></li>
+<li><a href="#/slide-org4d1b7a9">RabbitMQ</a></li>
+<li><a href="#/slide-org261f698">Сервисы</a></li>
+<li><a href="#/slide-orgf847d36">repodb</a></li>
+<li><a href="#/slide-org529cdf1">Сервисы</a></li>
+<li><a href="#/slide-org27951bd">sources:</a></li>
+<li><a href="#/slide-org896051e">Вопросы</a></li>
 </ul>
 </div>
 </div>
@@ -36,10 +40,10 @@
 
 
 <section>
-<section id="slide-org7b53409">
-<h2 id="org7b53409">Доклад</h2>
+<section id="slide-org2c0eb7c">
+<h2 id="org2c0eb7c">Доклад</h2>
 
-<div id="orgd8cecf8" class="figure">
+<div id="orgb977388" class="figure">
 <p><img src="./qr.svg" alt="qr.svg" class="org-svg" width="55%" align="center" />
 </p>
 </div>
@@ -51,8 +55,8 @@
 </section>
 </section>
 <section>
-<section id="slide-org1505bf4">
-<h2 id="org1505bf4">Overview</h2>
+<section id="slide-org4f020a7">
+<h2 id="org4f020a7">Вступление</h2>
 <ul>
 <li class="fragment appear">Сборочница (girar)</li>
 <li class="fragment appear">Advanced Message Queuing Protocol
@@ -69,15 +73,17 @@
 </section>
 </section>
 <section>
-<section id="slide-org5066b09">
-<h2 id="org5066b09">Сборочница</h2>
-<p>
-bla bla bla
-События
-</p>
+<section id="slide-org4edc17c">
+<h2 id="org4edc17c">AMQP в Сборочнице</h2>
+<ul>
+<li class="fragment appear"><b>amqp-publish</b> из пакета rabbitmq-c</li>
+<li class="fragment appear">Сообщения отправляются по событию</li>
+
+</ul>
+
 </section>
-<section id="slide-orgbdce17a">
-<h3 id="orgbdce17a">Изменение в <b>задании</b></h3>
+<section id="slide-org84983c1">
+<h3 id="org84983c1">Изменение в <b>задании</b></h3>
 <ul>
 <li class="fragment appear"><b>state</b>: смена состояния таска</li>
 <li class="fragment appear"><b>delete</b>: удаление таска</li>
@@ -88,24 +94,9 @@ bla bla bla
 
 </ul>
 
-
-
-
-<ul>
-<li class="fragment appear"></li>
-
-<li class="fragment appear">Изменение в <b>подзадании</b></li>
-<li class="fragment appear">Изменение в <b>ACL</b></li>
-
-</ul>
-
 </section>
-<section id="slide-orgb5d9902">
-<h3 id="orgb5d9902">Действия на изменения в таске</h3>
-
-</section>
-<section id="slide-org930a387">
-<h3 id="org930a387">События на изменения в сабтаске</h3>
+<section id="slide-orgd342e66">
+<h3 id="orgd342e66">Изменения в <b>подзадании</b></h3>
 <ul>
 <li class="fragment appear"><b>create</b></li>
 <li class="fragment appear"><b>delete</b></li>
@@ -115,20 +106,19 @@ bla bla bla
 </ul>
 
 </section>
-<section id="slide-org33fe38a">
-<h3 id="org33fe38a">Событие <b>progress</b></h3>
+<section id="slide-org1682e5e">
+<h3 id="org1682e5e">Событие <b>'progress'</b></h3>
 <ul>
-<li class="fragment appear">поэтапная загрузка таска в базу</li>
-<li class="fragment appear">анализ процесса сборки</li>
+<li class="fragment appear">Поэтапная загрузка таска в базу</li>
+<li class="fragment appear">Анализ процесса сборки</li>
 
 </ul>
-
-</section>
-<section id="slide-org9e15b92">
-<h3 id="org9e15b92">gb/gb-build-task-stages</h3>
+<p class="fragment (appear)">
+Этапы сборки (gb/gb-build-task-stages)
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-bash"   ><code trim><span style="color: #8b8386;"># </span><span style="color: #8b8386;">prepare changes</span>
+<pre  class="fragment (appear)"   ><code trim><span style="color: #8b8386;"># </span><span style="color: #8b8386;">prepare changes</span>
 gb-task-gen-buildrepo
 gb-task-setup-remote
 gb-task-copy-packages
@@ -182,8 +172,8 @@ gb-task-save-repo
 </div>
 
 </section>
-<section id="slide-org4b94dcd">
-<h3 id="org4b94dcd">События на изменения в ACL</h3>
+<section id="slide-org3693996">
+<h3 id="org3693996">Изменения в ACL</h3>
 <ul class="fragment appear">
 <li>add</li>
 <li>del</li>
@@ -198,89 +188,107 @@ gb-task-save-repo
 </section>
 </section>
 <section>
-<section id="slide-orged9824e">
-<h2 id="orged9824e">RabbitMQ</h2>
-<p class="fragment (appear)">
-blabla
-why RabbitMQ?
-</p>
-
-</section>
-<section id="slide-org81ef27d">
-<h3 id="org81ef27d">High Availability</h3>
-</section>
-<section id="slide-orgf61c089">
-<h3 id="orgf61c089">Security</h3>
-</section>
-<section id="slide-org5682eac">
-<h3 id="org5682eac">Routing</h3>
-
-
-</section>
-<section id="slide-orga87af3f">
-<h3 id="orga87af3f">routing: routing key(sostav)</h3>
-
-</section>
-</section>
-<section>
-<section id="slide-orgdd265b5">
-<h2 id="orgdd265b5">Сервисы</h2>
-<div class="outline-text-2" id="text-orgdd265b5">
-</div>
-</section>
-<section id="slide-orgf4883fc">
-<h3 id="orgf4883fc">repodb</h3>
+<section id="slide-org4d1b7a9">
+<h2 id="org4d1b7a9">RabbitMQ</h2>
 <ul>
-<li class="fragment appear">altrepodb</li>
-<li class="fragment appear">altrepo-api и <a href="https://rdb.altlinux.org/api/">https://rdb.altlinux.org/api/</a></li>
-<li class="fragment appear">packages.altlinux.org</li>
-<li class="fragment appear">Сервис загрузки тасков</li>
+<li class="fragment appear">High Availability
+<ul>
+<li class="fragment appear">Кластер из трех узлов</li>
+<li class="fragment appear">Keepalived</li>
+<li class="fragment appear">Quorum queues</li>
+
+</ul></li>
+<li class="fragment appear">Security
+<ul>
+<li class="fragment appear">Все подключения осуществляются через TLS</li>
+<li class="fragment appear">Разграничен доступ к ресурсам между пользователями</li>
+<li class="fragment appear">Свой сервер авторизации и аутентификации
+<ul>
+<li class="fragment appear">Авторизация по Source IP</li>
+
+</ul></li>
+
+</ul></li>
 
 </ul>
 
 </section>
-<section id="slide-org697ece2">
-<h3 id="org697ece2">bugzilla</h3>
 </section>
-<section id="slide-orgd1f25c3">
-<h3 id="orgd1f25c3">QA automation</h3>
+<section>
+<section id="slide-org261f698">
+<h2 id="org261f698">Сервисы</h2>
 </section>
-<section id="slide-org95d9f1e">
-<h3 id="org95d9f1e">Future</h3>
+</section>
+<section>
+<section id="slide-orgf847d36">
+<h2 id="orgf847d36">repodb</h2>
+<ul>
+<li class="fragment appear">altrepodb
+<ul>
+<li class="fragment appear">sql/0000_ initial.sql</li>
 
+</ul></li>
+<li class="fragment appear">altrepo-api
+<ul>
+<li class="fragment appear"><a href="https://rdb.altlinux.org/api/">https://rdb.altlinux.org/api/</a></li>
+
+</ul></li>
+<li class="fragment appear">packages.altlinux.org</li>
+
+</ul>
 
 </section>
 </section>
 <section>
-<section id="slide-orgb448c2f">
-<h2 id="orgb448c2f">The End</h2>
-<div class="outline-text-2" id="text-orgb448c2f">
+<section id="slide-org529cdf1">
+<h2 id="org529cdf1">Сервисы</h2>
+<ul>
+<li class="fragment appear">Сервис загрузки тасков
+<ul>
+<li class="fragment appear">Поддержание актуальности базы</li>
+<li class="fragment appear">Обработка случаев сложных для altrepodb</li>
+<li class="fragment appear">реализован на python с помощью библиотеки pika</li>
+
+</ul></li>
+<li class="fragment appear">Загрузка багов из багзиллы
+<ul>
+<li class="fragment appear">Bugzilla Push Extension</li>
+<li class="fragment appear">Сервис загрузки багов</li>
+
+</ul></li>
+<li class="fragment appear">Использование в тестировании</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org27951bd">
+<h2 id="org27951bd">sources:</h2>
+<ul>
+<li><a href="https://git.altlinux.org/people/egori/public/?p=uploaderd.git">uploaderd</a></li>
+<li><a href="https://git.altlinux.org/people/glebfm/packages/girar.git">girar</a></li>
+<li><a href="https://git.altlinux.org/people/dshein/public/altrepodb.git">altrepodb</a></li>
+<li><a href="https://git.altlinux.org/gears/a/altrepo-api.git?p=altrepo-api.git">altrepo-api</a></li>
+<li><a href="https://git.altlinux.org/people/egori/public/?p=bugzilla-push.git">bugzilla-push</a></li>
+<li><a href="https://github.com/pika/pika">pika</a></li>
+<li><a href="https://github.com/alanxz/rabbitmq-c">rabbitmq-c</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org896051e">
+<h2 id="org896051e">Вопросы</h2>
+
+<div id="orgad22992" class="figure">
+<p><img src="./qr.svg" alt="qr.svg" class="org-svg" width="55%" align="center" />
+</p>
 </div>
-</section>
-<section id="slide-org5a197e1">
-<h3 id="org5a197e1">links:</h3>
-<p>
-<a href="https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol">Wikipedia: AMQP</a>
-</p>
 
 <p>
-<a href="https://en.wikipedia.org/wiki/RabbitMQ">Wikipedia: RabbitMQ</a>
-</p>
-
-<p>
-<a href="https://www.rabbitmq.com/documentation.html">RabbitMQ Docs</a>
-</p>
-
-</section>
-<section id="slide-org287b6c9">
-<h3 id="org287b6c9">sources:</h3>
-<p>
-<a href="https://git.altlinux.org/people/glebfm/packages/girar.git">girar</a>
-</p>
-
-
-<p>
-<a href="https://git.altlinux.org/people/dshein/public/?p=altrepodb.git">altrepodb</a>
+<a href="https://blarse.github.io/girar-amqp/">https://blarse.github.io/girar-amqp/</a>
 </p>
 </section>
 </section>
@@ -298,7 +306,7 @@ why RabbitMQ?
 Reveal.initialize({
 plugins: [RevealMarkdown, RevealZoom, RevealNotes],
 center:false, transition:'slide', hash: true, navigationMode: 'linear',
-margin:0.1, width:1024, height:768
+margin:0.15, width:1024, height:768
 });
 
 </script>
