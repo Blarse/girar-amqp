@@ -29,7 +29,7 @@ https://blarse.github.io/girar-amqp/
 
 * AMQP в Сборочнице
 #+ATTR_REVEAL: :frag (appear)
-- *amqp-publish* из пакета rabbitmq-c
+- Клиент: *amqp-publish* из пакета rabbitmq-c
 - Сообщения отправляются по событию
 
 ** Изменение в *задании*
@@ -51,6 +51,7 @@ https://blarse.github.io/girar-amqp/
 ** Событие *'progress'*
 #+ATTR_REVEAL: :frag (appear)
 - Поэтапная загрузка таска в базу данных
+- Мониторинг сборки в реальном времени
 - Анализ процесса сборки
 #+ATTR_REVEAL: :frag (appear)
 Этапы сборки (gb/gb-build-task-stages)
@@ -123,23 +124,22 @@ https://blarse.github.io/girar-amqp/
 - High Availability
   #+ATTR_REVEAL: :frag (appear)
   + Кластер из трех узлов
-  + Keepalived
+  + Keepalived и VIP
   + Очереди типа quorum
 - Security
   #+ATTR_REVEAL: :frag (appear)
   + Все подключения осуществляются через TLS
   + Разграничен доступ к ресурсам между пользователями
-  + Свой сервер авторизации и аутентификации
+  + Свой сервер аутентификации и авторизации
     #+ATTR_REVEAL: :frag (appear)
     * Авторизация по Source IP
 
 * Сервисы
-* repodb
+* ALTRepo DB
 
 #+ATTR_REVEAL: :frag (appear)
-- altrepodb
-  #+ATTR_REVEAL: :frag (appear)
-  + sql/0000_ initial.sql
+- sql/0000_ initial.sql
+- ALTRepo Uploader
 - altrepo-api
   #+ATTR_REVEAL: :frag (appear)
   + https://rdb.altlinux.org/api/
@@ -150,11 +150,11 @@ https://blarse.github.io/girar-amqp/
 - Сервис загрузки тасков
   #+ATTR_REVEAL: :frag (appear)
   + Поддержание актуальности базы
-  + Обработка случаев сложных для altrepodb
+  + Обработка случаев сложных для ALTRepo Uploader
   + реализован на python с помощью библиотеки pika
 - Загрузка багов из багзиллы
   #+ATTR_REVEAL: :frag (appear)
-  + Bugzilla Push Extension
+  + Bugzilla Push
   + TODO: Сервис загрузки багов
 - Использование в тестировании сборочных заданий
 

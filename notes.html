@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<style>*{font-size: x-large;}</style>
+</head>
+<body>
+<div id="content" class="content">
+
+<div id="outline-container-org01e4564" class="outline-2">
+<h2 id="org01e4564">Slide 1: intro</h2>
+<div class="outline-text-2" id="text-org01e4564">
+<p>
+Всем привет, меня зовут Игнатов Егор я сотрудник Базальт СПО.
+Я расскажу про, то как добавлял в сборочницу поддержку отправки AMQP сообщений.
+И про нашу инфраструктуру обмена AMQP сообщениями в целом.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org49c48c8" class="outline-2">
+<h2 id="org49c48c8">Slide 2: qr</h2>
+<div class="outline-text-2" id="text-org49c48c8">
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Мой доклад доступен онлайн, так что можете открыть его у себя на устройстве.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org288f04a" class="outline-2">
+<h2 id="org288f04a">Slide 3: overview</h2>
+<div class="outline-text-2" id="text-org288f04a">
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Думаю большинство присутствующих знакомы с нашей сборочницей она же girar, многие
+регулярно пользуются ей, поэтому не будем на этом останавливаться.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+С AMQP, думаю, знакомо меньше, поэтому в кратце что это.
+AMQP расшифровывается как <b>Advanced Message Queuing Protocol</b>.
+Это RPC протокол для обмена сообщениями в текстовом виде, в данном случае в формате json.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+На википедии говорят, что основными особенностями протокола являюстя:
+организация очередей, маршрутизация, надежность и безопасность.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org80b3875" class="outline-2">
+<h2 id="org80b3875">Slide 4: girar-amqp</h2>
+<div class="outline-text-2" id="text-org80b3875">
+<p>
+AMQP в Сборочнице
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Сборочница написана на bash поэтому в качестве AMQP клиента была
+выбрана утилита <b>amqp-publish</b> из пакета rabbitmq-c.
+</p>
+
+<p>
+В процесс разработки были найдены и исправленны некоторые баги в этой
+утилите, а также добавлен новый функционал, в частности это режим
+переподключения, если не удалось установить соединение с сервером с
+первого раза.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Сообщение отправляется по событию на сборочнице.
+</p>
+
+<p>
+На каждое зарегистрированное событие в сборочнице отправляется
+сообщение в формате json, содержащее соответствующую информацию о
+событии и мета-данные для дальнейшей обработки этого сообщения.
+Подробнее с форматом сообщений, какие json поля они содержат, можно
+ознакомится в исходниках, ссылки будут в конце презентации, а здесь я
+только расскажу какие события бывают.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0e0f75c" class="outline-2">
+<h2 id="org0e0f75c">Slide 5: task</h2>
+<div class="outline-text-2" id="text-org0e0f75c">
+<p>
+Существует 6 событий, касающихся изменения таска:
+</p>
+<ul class="org-ul">
+<li><b>&lt;click&gt;</b> state: изменение состояния таска (в целом самый важное событие)</li>
+<li><b>&lt;click&gt;</b> delete: удаление таска, тот же state под капотом</li>
+<li><b>&lt;click&gt;</b> deps: изменение зависимостей</li>
+<li><b>&lt;click&gt;</b> share: изменение доступа к таску</li>
+<li><b>&lt;click&gt;</b> abort: преждевременная остановка процесса сборки</li>
+</ul>
+
+<p>
+То есть все действия с таском, доступные через ssh интерфейс
+сборочницы, хотя state меняется и в процессе сборки тоже.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+И еще есть событие <b>progress</b>, это эксперементальное событие, патч с ним еще не был
+добавлен в апстрим, о нем подробнее чуть позже. Сейчас передем к подзаданиям.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org29d3790" class="outline-2">
+<h2 id="org29d3790">Slide 6: subtask</h2>
+<div class="outline-text-2" id="text-org29d3790">
+<p>
+С подзаданиями(сабтасками) все аналогично:
+</p>
+<ul class="org-ul">
+<li><b>&lt;click&gt;</b> create - на создание</li>
+<li><b>&lt;click&gt;</b> delete - на удаление</li>
+<li><b>&lt;click&gt;</b> approve/disapprove - соответственно на добавление апрува или дизапрува</li>
+<li><b>&lt;click&gt;</b> И также progress</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5170eac" class="outline-2">
+<h2 id="org5170eac">Slide 6: progress</h2>
+<div class="outline-text-2" id="text-org5170eac">
+<p>
+Вот теперь передем к событию progress
+</p>
+
+<p>
+Как я уже сказал этот код еще не добавлен на сборочницу и в нем может
+что-то поменяться.  Задумка следующая: Поскольку сборка ведется
+этапами, то в процессе сборки можно отправлять сообщения о начале и об
+успешном или не успешном завершении каждого из этапов.
+</p>
+
+<p>
+<b>&lt;click&gt;</b> В будущем это позволит сделать поэтапную загрузку информации
+о таске в базу данных, по мере готовности этих данных, что уменьшит
+общую задержку при загрузке и увеличит актуальность данных.
+</p>
+
+<p>
+<b>&lt;click&gt;</b> Даст возможность отслеживать процесс сборки в реальном
+времени сторонним приложениям.
+</p>
+
+<p>
+<b>&lt;click&gt;</b> а также позволит проводить анализ процесса сборки: например отследить
+время прошлых сборок и проверок каждого пакета и расчитать примерное
+время сборки всего задания
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+<b>&lt;click&gt;</b>
+Ниже показан кусок кода girar со всеми стадиями сборки, вот как раз
+именно их и планируется отслеживать. Кому интересно файл
+gb/gb-build-task-stages в проекте girar
+</p>
+</div>
+</div>
+
+<div id="outline-container-org125f4aa" class="outline-2">
+<h2 id="org125f4aa">Slide 8: acl</h2>
+<div class="outline-text-2" id="text-org125f4aa">
+<p>
+Ну и третий тип событий, события связанные с ACL
+На каждое изменение acl отправляется сообщение с именем ветки
+репозитория в которой произошло изменение, таргетом: это пакет или
+группа которая изменяется и список старых и новых владельцев.
+<b>&lt;click&gt;</b>
+Вот все возможные event'ы с acl:
+</p>
+<ul class="org-ul">
+<li>add</li>
+<li>del</li>
+<li>leader</li>
+<li>replace</li>
+</ul>
+<p>
+стандартные из ssh интерфейса, и 2 суперпользовательских:
+</p>
+<ul class="org-ul">
+<li>create</li>
+<li>delete</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org646bcce" class="outline-2">
+<h2 id="org646bcce">Slide 9: RabbitMQ</h2>
+<div class="outline-text-2" id="text-org646bcce">
+<p>
+Передем ко второй части доклада - RabbitMQ
+</p>
+
+<p>
+Мы выбрали RabbitMQ в качестве брокера потому что это наиболее широко
+распространенный брокер сообщений с открытым исходным кодом, он
+активно развивается и имеет очень хорошую документацию
+</p>
+
+<p>
+Подробно о том как работает сам брокер вы можете ознакомится
+самостоятельно, я опять же рекомендую оффициальную документацию, там
+есть как множество примеров использования на разных языках
+программирования, так и детальное описание настройки сервера, <b>я
+расскажу только особенности нашего случая</b>.
+</p>
+
+<p>
+<b>&lt;click&gt;</b> ha
+</p>
+
+<p>
+Так как брокер - это ключевой компонент, от него требуется быть
+надежным, и как еще говорят высоко доступным (High Available)
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Для этого у нас развернут кластер из трех нод(узлов) средствами RabbitMQ.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Для клиентов, которые не поддерживают работу с кластером напрямую, то
+есть, которые работают только с одним сервером, в кластере настроен
+виртуальный ip и keepalived для автоматического перехода ip на другой
+ресурс.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+А также используются так называемые quorum очереди, которые
+автоматически зеркалируют сообщения между всеми нодами кластера, что
+также обеспечивает надежность в работе системы.  Так например
+сообщение, отправленное на один узел кластера, можно забрать с
+другого. Вся синхронизация происходит автоматически самим RabbitMQ
+</p>
+
+<p>
+<b>&lt;click&gt;</b> security
+</p>
+
+<p>
+Другой важный аспект - это безопасность для этого,
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Во-первых, все подключения к серверу осуществляются через TLS.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Во-вторых, разграничен доступ к ресурсам у отдельных полозователей.
+Для каждого клиента создан свой пользователь, который имеет доступ
+только к нужным ему ресурсам.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+А также был реалезован отдельный сервер аутентификации и авторизации,
+<b>&lt;click&gt;</b> с поддержкой авторизации по source ip, поскольку такой
+функционал отсутствует во встроенном решении.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc643309" class="outline-2">
+<h2 id="orgc643309">Slide 12: Services</h2>
+<div class="outline-text-2" id="text-orgc643309">
+<p>
+В третьей части доклада я расскажу про сервисы, котрые подписываются
+на очередь потребляют и обрабатывают полученные сообщения
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1048ae5" class="outline-2">
+<h2 id="org1048ae5">Slide 13: altrepodb</h2>
+<div class="outline-text-2" id="text-org1048ae5">
+<p>
+На данный момент основным приложением является загрузка данных в базу altrepodb.
+Поэтому сначал я немного рассакжу про работу моих коллег, связанную с этой базой.
+</p>
+
+<p>
+altrepodb - это база данных clickhouse которая хранит в себе различную
+информацию касающуюся проекта ALT Linux, такую как состояние веток
+репозитория, состояния сборочных заданий, образы дистрибутивов, баги
+из багзиллы и прочее.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Структура базы описанна вот в этом файле из репозитория altrepodb,
+ссылка тоже будет в конце презентации
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Первый проект ALTRepo Uploader - набор утилит для загрузки информации
+в altrepodb.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Второй проект - altrepo-api - это публичное API к базе данных ALTRepo DB
+посмотреть и попробовать его можно по этой ссылке. <b>&lt;click&gt;</b>
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Ну и третий - это сайт <a href="https://packages.altlinux.org/">https://packages.altlinux.org/</a>, который визуализирует данные из ALTRepo DB
+</p>
+</div>
+</div>
+
+<div id="outline-container-org84dae97" class="outline-2">
+<h2 id="org84dae97">Slide 14: Services</h2>
+<div class="outline-text-2" id="text-org84dae97">
+<p>
+Вернемся к сервисам AMQP:
+</p>
+</div>
+<div id="outline-container-orgcc57c43" class="outline-3">
+<h3 id="orgcc57c43">task loader</h3>
+<div class="outline-text-3" id="text-orgcc57c43">
+<p>
+Сервис загрузки информации о тасках, он находится в стадии активной
+разработки и решает две основные задачи, это:
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+<b>поддержание актуальности базы</b>: загрузка данных происходит сразу при получении
+сообщения.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Обработка событий, которые сложно отследить по состоянию файловой системы:
+например при удалении таска сборочница полностью стирает папку задания
+с файловой системы и без сообщения отследить удаление задания не просто.
+</p>
+
+<p>
+<b>&lt;click&gt;</b>
+</p>
+
+<p>
+Для подключения к серверу RabbitMQ используется библиотека python <b>pika</b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3600b13" class="outline-3">
+<h3 id="org3600b13">bugzilla</h3>
+<div class="outline-text-3" id="text-org3600b13">
+<p>
+Помимо girar, сообщения еще отправляются из нашей
+багзиллы(bugzilla.altlinux.org), <b>&lt;click&gt;</b> для этого используется
+плагин Bugzilla-Push, доработанный под наши требования
+</p>
+
+<p>
+К сожалению нынешняя структура базы не позволяет грузить всю
+информациию о багах, получаемую из сообщения, поэтому в будущем
+планируется изменить структуру и <b>&lt;click&gt;</b> сделать сервис по загрузке.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org73fde60" class="outline-3">
+<h3 id="org73fde60">qa</h3>
+<div class="outline-text-3" id="text-org73fde60">
+<p>
+Также AMQP сообщения используются в процессах тестирования сборочных заданий.
+</p>
+
+<p>
+Подробности о самом процессе тестирования можно будет узнать завтра
+утром из докладов моих коллег тестировщиков.
+</p>
+
+<p>
+В докладе этого не будет, потому что функционал был добавлен совсем
+недавно, но могу сказать что сейчас уже информация об изменении
+в таске приходит от сборочницы через AMQP.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2fa1474" class="outline-2">
+<h2 id="org2fa1474">ссылки на исходники</h2>
+</div>
+
+<div id="outline-container-orge5afee3" class="outline-2">
+<h2 id="orge5afee3">end</h2>
+<div class="outline-text-2" id="text-orge5afee3">
+<p>
+спасибо за внимание
+</p>
+
+<p>
+вопросы, комментарии, идеи, пожелания?
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

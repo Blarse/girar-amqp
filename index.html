@@ -24,15 +24,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org61f1e03">Доклад</a></li>
-<li><a href="#/slide-org76e2c21">Вступление</a></li>
-<li><a href="#/slide-org7dfe649">AMQP в Сборочнице</a></li>
-<li><a href="#/slide-org06d94ac">RabbitMQ</a></li>
-<li><a href="#/slide-org3d7aed9">Сервисы</a></li>
-<li><a href="#/slide-org43f46d2">repodb</a></li>
-<li><a href="#/slide-orgf3d6771">Сервисы</a></li>
-<li><a href="#/slide-org48cd671">sources:</a></li>
-<li><a href="#/slide-org776807c">Вопросы</a></li>
+<li><a href="#/slide-org4cc375e">Доклад</a></li>
+<li><a href="#/slide-org38924d9">Вступление</a></li>
+<li><a href="#/slide-orga313ff4">AMQP в Сборочнице</a></li>
+<li><a href="#/slide-orga003d6f">RabbitMQ</a></li>
+<li><a href="#/slide-org9492e29">Сервисы</a></li>
+<li><a href="#/slide-org9fb28ef">ALTRepo DB</a></li>
+<li><a href="#/slide-orgbb672c0">Сервисы</a></li>
+<li><a href="#/slide-org2e36048">sources:</a></li>
+<li><a href="#/slide-orgc39c66c">Вопросы</a></li>
 </ul>
 </div>
 </div>
@@ -40,10 +40,10 @@
 
 
 <section>
-<section id="slide-org61f1e03">
-<h2 id="org61f1e03">Доклад</h2>
+<section id="slide-org4cc375e">
+<h2 id="org4cc375e">Доклад</h2>
 
-<div id="orgeb2a0a8" class="figure">
+<div id="org102d78f" class="figure">
 <p><img src="./qr.svg" alt="qr.svg" class="org-svg" width="55%" align="center" />
 </p>
 </div>
@@ -55,8 +55,8 @@
 </section>
 </section>
 <section>
-<section id="slide-org76e2c21">
-<h2 id="org76e2c21">Вступление</h2>
+<section id="slide-org38924d9">
+<h2 id="org38924d9">Вступление</h2>
 <ul>
 <li class="fragment appear">Сборочница (girar)</li>
 <li class="fragment appear">Advanced Message Queuing Protocol
@@ -73,17 +73,17 @@
 </section>
 </section>
 <section>
-<section id="slide-org7dfe649">
-<h2 id="org7dfe649">AMQP в Сборочнице</h2>
+<section id="slide-orga313ff4">
+<h2 id="orga313ff4">AMQP в Сборочнице</h2>
 <ul>
-<li class="fragment appear"><b>amqp-publish</b> из пакета rabbitmq-c</li>
+<li class="fragment appear">Клиент: <b>amqp-publish</b> из пакета rabbitmq-c</li>
 <li class="fragment appear">Сообщения отправляются по событию</li>
 
 </ul>
 
 </section>
-<section id="slide-org18be1ec">
-<h3 id="org18be1ec">Изменение в <b>задании</b></h3>
+<section id="slide-org6814e24">
+<h3 id="org6814e24">Изменение в <b>задании</b></h3>
 <ul>
 <li class="fragment appear"><b>state</b>: смена состояния таска</li>
 <li class="fragment appear"><b>delete</b>: удаление таска</li>
@@ -95,8 +95,8 @@
 </ul>
 
 </section>
-<section id="slide-orgff5ad4c">
-<h3 id="orgff5ad4c">Изменения в <b>подзадании</b></h3>
+<section id="slide-org0c2373a">
+<h3 id="org0c2373a">Изменения в <b>подзадании</b></h3>
 <ul>
 <li class="fragment appear"><b>create</b></li>
 <li class="fragment appear"><b>delete</b></li>
@@ -106,10 +106,11 @@
 </ul>
 
 </section>
-<section id="slide-org706ed27">
-<h3 id="org706ed27">Событие <b>'progress'</b></h3>
+<section id="slide-orgc39bee2">
+<h3 id="orgc39bee2">Событие <b>'progress'</b></h3>
 <ul>
 <li class="fragment appear">Поэтапная загрузка таска в базу данных</li>
+<li class="fragment appear">Мониторинг сборки в реальном времени</li>
 <li class="fragment appear">Анализ процесса сборки</li>
 
 </ul>
@@ -172,8 +173,8 @@ gb-task-save-repo
 </div>
 
 </section>
-<section id="slide-orge13df05">
-<h3 id="orge13df05">Изменения в ACL</h3>
+<section id="slide-orgdff8127">
+<h3 id="orgdff8127">Изменения в ACL</h3>
 <ul class="fragment appear">
 <li>add</li>
 <li>del</li>
@@ -188,13 +189,13 @@ gb-task-save-repo
 </section>
 </section>
 <section>
-<section id="slide-org06d94ac">
-<h2 id="org06d94ac">RabbitMQ</h2>
+<section id="slide-orga003d6f">
+<h2 id="orga003d6f">RabbitMQ</h2>
 <ul>
 <li class="fragment appear">High Availability
 <ul>
 <li class="fragment appear">Кластер из трех узлов</li>
-<li class="fragment appear">Keepalived</li>
+<li class="fragment appear">Keepalived и VIP</li>
 <li class="fragment appear">Очереди типа quorum</li>
 
 </ul></li>
@@ -202,7 +203,7 @@ gb-task-save-repo
 <ul>
 <li class="fragment appear">Все подключения осуществляются через TLS</li>
 <li class="fragment appear">Разграничен доступ к ресурсам между пользователями</li>
-<li class="fragment appear">Свой сервер авторизации и аутентификации
+<li class="fragment appear">Свой сервер аутентификации и авторизации
 <ul>
 <li class="fragment appear">Авторизация по Source IP</li>
 
@@ -215,19 +216,16 @@ gb-task-save-repo
 </section>
 </section>
 <section>
-<section id="slide-org3d7aed9">
-<h2 id="org3d7aed9">Сервисы</h2>
+<section id="slide-org9492e29">
+<h2 id="org9492e29">Сервисы</h2>
 </section>
 </section>
 <section>
-<section id="slide-org43f46d2">
-<h2 id="org43f46d2">repodb</h2>
-<ul>
-<li class="fragment appear">altrepodb
+<section id="slide-org9fb28ef">
+<h2 id="org9fb28ef">ALTRepo DB</h2>
 <ul>
 <li class="fragment appear">sql/0000_ initial.sql</li>
-
-</ul></li>
+<li class="fragment appear">ALTRepo Uploader</li>
 <li class="fragment appear">altrepo-api
 <ul>
 <li class="fragment appear"><a href="https://rdb.altlinux.org/api/">https://rdb.altlinux.org/api/</a></li>
@@ -240,19 +238,19 @@ gb-task-save-repo
 </section>
 </section>
 <section>
-<section id="slide-orgf3d6771">
-<h2 id="orgf3d6771">Сервисы</h2>
+<section id="slide-orgbb672c0">
+<h2 id="orgbb672c0">Сервисы</h2>
 <ul>
 <li class="fragment appear">Сервис загрузки тасков
 <ul>
 <li class="fragment appear">Поддержание актуальности базы</li>
-<li class="fragment appear">Обработка случаев сложных для altrepodb</li>
+<li class="fragment appear">Обработка случаев сложных для ALTRepo Uploader</li>
 <li class="fragment appear">реализован на python с помощью библиотеки pika</li>
 
 </ul></li>
 <li class="fragment appear">Загрузка багов из багзиллы
 <ul>
-<li class="fragment appear">Bugzilla Push Extension</li>
+<li class="fragment appear">Bugzilla Push</li>
 <li class="fragment appear">TODO: Сервис загрузки багов</li>
 
 </ul></li>
@@ -263,8 +261,8 @@ gb-task-save-repo
 </section>
 </section>
 <section>
-<section id="slide-org48cd671">
-<h2 id="org48cd671">sources:</h2>
+<section id="slide-org2e36048">
+<h2 id="org2e36048">sources:</h2>
 <ul>
 <li><a href="https://git.altlinux.org/people/egori/public/?p=uploaderd.git">uploaderd</a></li>
 <li><a href="https://git.altlinux.org/people/glebfm/packages/girar.git">girar</a></li>
@@ -279,10 +277,10 @@ gb-task-save-repo
 </section>
 </section>
 <section>
-<section id="slide-org776807c">
-<h2 id="org776807c">Вопросы</h2>
+<section id="slide-orgc39c66c">
+<h2 id="orgc39c66c">Вопросы</h2>
 
-<div id="org1f67197" class="figure">
+<div id="orgcf9f9a9" class="figure">
 <p><img src="./qr.svg" alt="qr.svg" class="org-svg" width="55%" align="center" />
 </p>
 </div>
